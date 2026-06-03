@@ -22,3 +22,12 @@ Face au bruit boursier, ce projet démontre comment le modèle TFT surpasse les 
 * Une haute interprétabilité (mécanisme d'attention limitant l'effet "boîte noire").
 
 🔗 **[Consulter le projet complet sur GitHub](https://github.com/Gervais-59/Projet_Bourse_Apple/tree/main/Projet_bourse_Apple)** *(Inclut le code source et le rapport PDF explicatif).*
+
+
+### 🔍 Exploration et Réduction de Dimension : ACP & ACM appliquées
+Ce dépôt regroupe deux projets d'analyse de données multivariées, démontrant comment les méthodes factorielles permettent d'extraire le signal pertinent et de pallier les limites du Machine Learning classique face à des données complexes ou restreintes.
+
+* **Détection d'anomalies réseau par ACP (Cybersécurité) :** Modélisation du trafic d'un réseau à commutation optique par rafales (OBS) pour identifier des attaques par inondation de type *BHP Flooding*[cite: 1]. Face au manque de données nécessaires à un apprentissage supervisé classique, l'ACP a permis de caractériser le comportement "normal" du réseau et d'isoler géométriquement la "signature de l'attaque" (anomalies de latence), indépendamment de la simple saturation volumétrique[cite: 1].
+* **Prédiction de faillite d'entreprises par ACM (Finance) :** Évaluation du risque de défaillance d'entreprises à partir de critères purement qualitatifs (compétitivité, flexibilité financière, risques de gestion définis par des experts)[cite: 1]. L'Analyse des Correspondances Multiples a permis de synthétiser ces données complexes et de démontrer une dichotomie quasi-parfaite sur le premier axe factoriel entre les entreprises saines et celles en faillite[cite: 1].
+
+🔗 **[Consulter le projet complet sur GitHub](https://github.com/Gervais-59/ACP_python)** *(Inclut les scripts R/Python et le rapport d'étude).*
