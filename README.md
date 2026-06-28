@@ -2,7 +2,7 @@
 ### Portfolio Data Science & Modélisation Statistique
 
 ## À propos de moi
-Passionné par les mathématiques appliquées, je suis titulaire deux masters: Master en Probabilités et Statistiques(Côte d'Ivoire), master Modélisation Statistique et Science de Données (France). Mon parcours a d'abord pris la forme de la recherche académique : j'ai entamé une thèse portant sur la stabilisation d'équations différentielles stochastiques rétrogrades fortement couplées appliquées à l'optimisation de portefeuilles.
+Passionné par les mathématiques appliquées, je suis titulaire de deux masters: Master en Probabilités et Statistiques(Côte d'Ivoire), master Modélisation Statistique et Science de Données (France). Mon parcours a d'abord pris la forme de la recherche académique : j'ai entamé une thèse portant sur la stabilisation d'équations différentielles stochastiques rétrogrades fortement couplées appliquées à l'optimisation de portefeuilles.
 
 Après presque deux années de recherche fructueuses, la disparition tragique de mon directeur de thèse a malheureusement interrompu ce projet. Face à cette épreuve, j'ai fait preuve de résilience et décidé de pivoter vers un domaine qui m'a toujours fasciné : la Data Science.
 
