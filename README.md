@@ -12,7 +12,7 @@ Aujourd'hui, je combine la rigueur mathématique issue de la recherche avec une 
 
 - Le Machine Learning classique & l'analyse statistique
 
-- La Vision par Ordinateur (Computer Vision)
+- La Vision par Ordinateur(Computer Vision)
 
 - Le NLP (Natural Language Processing) et l'IA Générative (RAG)
 
