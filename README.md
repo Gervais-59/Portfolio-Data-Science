@@ -2,13 +2,21 @@
 ### Portfolio Data Science & Modélisation Statistique
 
 ## À propos de moi
-Passionné par les mathématiques appliquées, je suis titulaire de deux masters: Master en Probabilités et Statistiques(Côte d'Ivoire), master Modélisation Statistique et Science de Données (France). Mon parcours a d'abord pris la forme de la recherche académique : j'ai entamé une thèse portant sur la stabilisation d'équations différentielles stochastiques rétrogrades fortement couplées appliquées à l'optimisation de portefeuilles.
+Passionné par les mathématiques appliquées, je suis titulaire de deux masters : Probabilités et Statistiques (Côte d'Ivoire) et Modélisation Statistique & Science des Données (Université Claude Bernard Lyon 1, France).
 
-Après presque deux années de recherche fructueuses, la disparition tragique de mon directeur de thèse a malheureusement interrompu ce projet. Face à cette épreuve, j'ai fait preuve de résilience et décidé de pivoter vers un domaine qui m'a toujours fasciné : la Data Science.
+Mon parcours a d'abord pris la forme de la recherche académique. J'ai entamé une thèse portant sur la stabilisation d'équations différentielles stochastiques rétrogrades fortement couplées appliquées à l'optimisation de portefeuilles. Après presque deux années de recherche fructueuses, la disparition tragique de mon directeur de thèse a malheureusement interrompu ce projet.
 
-J'ai alors intégré le Master de Modélisation Statistique et Science des Données à l'Université Claude Bernard (Lyon 1). Aujourd'hui, je combine la rigueur mathématique de la recherche avec une maîtrise avancée, tant théorique qu'appliquée, du Machine Learning et de l'analyse de données.
+Face à cette épreuve, j'ai fait le choix de la résilience en pivotant vers un domaine qui m'a toujours fasciné : la Data Science.
 
-Vous trouverez ci-dessous une sélection de mes projets récents. N'hésitez pas à me contacter si vous souhaitez échanger sur ces réalisations ou sur d'éventuelles opportunités de collaboration.
+Aujourd'hui, je combine la rigueur mathématique issue de la recherche avec une maîtrise technique avancée de l'Intelligence Artificielle. Mon expertise couvre :
+
+- Le Machine Learning classique & l'analyse statistique
+
+- La Vision par Ordinateur (Computer Vision)
+
+- Le NLP (Natural Language Processing) et l'IA Générative (RAG)
+
+Vous trouverez ci-dessous une sélection de mes projets récents. N'hésitez pas à me contacter si vous souhaitez échanger sur ces réalisations ou sur d'éventuelles opportunités de collaboration
 
 
 ## 🚀 Projets Réalisés
