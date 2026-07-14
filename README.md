@@ -31,12 +31,17 @@ Ce dépôt regroupe deux projets d'analyse de données multivariées, démontran
 
 🔗 **[Consulter le projet complet sur GitHub](https://github.com/Gervais-59/ACP_python)** *(Inclut les scripts R/Python et le rapport d'étude).*
 
+
+
 # ⚖️ Assistant juridique RAG — Droit du travail ivoirien
 
 > Un assistant documentaire qui répond à des questions en langage naturel sur le droit du travail ivoirien, avec citations d'articles vérifiables et abstention explicite hors du corpus.
 
 **Corpus indexé** : Code du travail (loi n°2015-532), 27 décrets d'application, 3 arrêtés, 1 ordonnance, 2 lois annexées (traite des enfants, délais), Convention collective interprofessionnelle du 19 juillet 1977 — soit **516 pages, 1 093 articles** structurés en chunks citables.
 
+---
+
+**[Consulter le projet complet sur GitHub](https://github.com/Gervais-59/RAG_Jurisprudence)**
 ---
 
 ## 🎯 Le problème
