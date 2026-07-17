@@ -1,60 +1,293 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-    <style> 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            color: #333;
-            padding: 50px;
-        }
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-        h1 { color: #2c3e50; }
-        a { color: #3498db; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        
-        /* Nouveau style pour le bouton */
-        .btn-portfolio {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .btn-portfolio:hover {
-            background-color: #2980b9;
-            text-decoration: none;
-            color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konan Gervais — Portfolio Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#141A22;        /* texte principal, bleu-noir profond */
+  --papier:#F7F9FB;       /* fond, blanc technique froid */
+  --carte:#FFFFFF;
+  --detect:#12A150;       /* vert "bounding box" des outils d'annotation */
+  --detect-fonce:#0C7A3C;
+  --grille:#DCE3EA;       /* traits fins, bordures */
+  --sourdine:#5A6672;     /* texte secondaire */
+  --focus:#1463FF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--papier);
+  color:var(--encre);
+  line-height:1.55;
+  /* fond quadrille discret, comme un canevas d'annotation */
+  background-image:
+    linear-gradient(var(--grille) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grille) 1px, transparent 1px);
+  background-size:56px 56px;
+  background-position:-1px -1px;
+}
+a{color:inherit}
+
+/* ---------- EN-TETE ---------- */
+header{
+  max-width:1060px;margin:0 auto;padding:64px 24px 40px;
+}
+.etiquette{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
+  color:var(--detect-fonce);text-transform:uppercase;
+}
+h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:10px 0 14px;
+}
+h1 .surlignage{
+  position:relative;white-space:nowrap;
+}
+/* le nom est encadre comme une detection, avec son "score" */
+h1 .surlignage::before{
+  content:"";position:absolute;inset:-4px -10px;
+  border:2px solid var(--detect);border-radius:3px;pointer-events:none;
+}
+h1 .surlignage::after{
+  content:"personne 0.99";
+  position:absolute;top:-26px;left:-10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+  background:var(--detect);color:#fff;padding:2px 7px;border-radius:2px;
+  letter-spacing:.04em;
+}
+.intro{max-width:640px;color:var(--sourdine);font-size:16.5px}
+.liens-sociaux{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.liens-sociaux a{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  text-decoration:none;padding:8px 14px;border:1.5px solid var(--encre);
+  border-radius:4px;transition:background .15s,color .15s;
+}
+.liens-sociaux a:hover{background:var(--encre);color:#fff}
+
+/* ---------- FILTRES ---------- */
+nav{
+  max-width:1060px;margin:0 auto;padding:0 24px 26px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+nav .compteur{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
+  margin-left:auto;
+}
+.filtre{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;cursor:pointer;
+  padding:7px 14px;border:1.5px solid var(--grille);border-radius:999px;
+  background:var(--carte);color:var(--sourdine);
+  transition:border-color .15s,color .15s,background .15s;
+}
+.filtre:hover{border-color:var(--encre);color:var(--encre)}
+.filtre[aria-pressed="true"]{
+  background:var(--encre);border-color:var(--encre);color:#fff;
+}
+
+/* ---------- GRILLE DE PROJETS ---------- */
+main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
+.grille{
+  display:grid;gap:20px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+}
+.carte{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--carte);border:1.5px solid var(--grille);border-radius:6px;
+  padding:22px 22px 18px;text-decoration:none;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.carte:hover,.carte:focus-visible{
+  transform:translateY(-3px);
+  border-color:var(--detect);
+  box-shadow:0 10px 28px rgba(18,161,80,.13);
+}
+.carte:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+/* poignees d'angle facon outil d'annotation, revelees au survol */
+.carte::before,.carte::after,
+.carte .coin-b::before,.carte .coin-b::after{
+  content:"";position:absolute;width:10px;height:10px;
+  border:2px solid var(--detect);opacity:0;transition:opacity .18s;
+}
+.carte::before{top:-2px;left:-2px;border-right:0;border-bottom:0}
+.carte::after{top:-2px;right:-2px;border-left:0;border-bottom:0}
+.carte .coin-b::before{bottom:-2px;left:-2px;border-right:0;border-top:0}
+.carte .coin-b::after{bottom:-2px;right:-2px;border-left:0;border-top:0}
+.carte:hover::before,.carte:hover::after,
+.carte:hover .coin-b::before,.carte:hover .coin-b::after{opacity:1}
+
+.carte .classe{
+  align-self:flex-start;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.05em;text-transform:uppercase;
+  background:var(--detect);color:#fff;padding:3px 8px;border-radius:2px;
+  margin-bottom:14px;
+}
+.carte h2{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:19px;letter-spacing:-.01em;margin-bottom:8px;
+}
+.carte p{color:var(--sourdine);font-size:14.5px;flex-grow:1}
+.carte .techs{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;
+}
+.carte .techs span{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--sourdine);
+  border:1px solid var(--grille);border-radius:3px;padding:2px 7px;
+}
+.carte .action{
+  margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+  font-weight:500;color:var(--detect-fonce);
+}
+.carte .action::after{content:" →";transition:margin-left .15s}
+.carte:hover .action::after{margin-left:4px}
+
+.vide{
+  grid-column:1/-1;text-align:center;padding:60px 20px;
+  color:var(--sourdine);font-size:15px;
+}
+
+footer{
+  max-width:1060px;margin:0 auto;padding:0 24px 48px;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+@media (max-width:560px){
+  header{padding-top:48px}
+  h1 .surlignage::after{top:-24px}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>👋 Bonjour, je suis Konan Gervais </h1>
-        <p>Bienvenue sur mon portfolio en ligne.</p>
-        <p>Je suis passionné par la Data Science, la Vision par Ordinateur, Le NLP, l'IA Générative (RAG) et la résolution de problèmes complexes.</p>
-        
-        <a href="https://github.com/Gervais-59/Portfolio-Data-Science" class="btn-portfolio">Voir mes projets Data Science</a>
-        
-        <br><br>
-        <p>Vous pouvez également me retrouver sur :</p>
-        <p>
-            <a href="https://www.linkedin.com/in/konan-gervais-n-guessan-54a084168/">LinkedIn</a> | 
-            <a href="https://github.com/Gervais-59">GitHub</a>
-        </p>
-    </div>
+
+<header>
+  <div class="etiquette">Portfolio · Data Science &amp; Vision par ordinateur</div>
+  <h1>Bonjour, je suis <span class="surlignage">Konan&nbsp;Gervais</span></h1>
+  <p class="intro">
+    Passionné par la Data Science, la vision par ordinateur, le NLP et l'IA
+    générative (RAG). Chaque carte ci-dessous est un projet&nbsp;: filtrez par
+    domaine et cliquez pour consulter le code et les résultats.
+  </p>
+  <div class="liens-sociaux">
+    <a href="https://www.linkedin.com/in/konan-gervais-n-guessan/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Gervais-59" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<nav id="filtres" aria-label="Filtrer les projets par domaine">
+  <!-- boutons generes par le script -->
+  <span class="compteur" id="compteur"></span>
+</nav>
+
+<main>
+  <div class="grille" id="grille"><!-- cartes generees par le script --></div>
+</main>
+
+<footer>Konan Gervais · construit à la main, sans framework.</footer>
+
+<script>
+/* ==========================================================================
+   LES PROJETS : c'est LE SEUL endroit à modifier.
+   Ajoute/supprime des objets dans ce tableau ; les cartes et les filtres
+   se mettent a jour automatiquement.
+   - categorie : sert aussi de filtre (les boutons sont generes depuis ici)
+   - lien      : URL du repo GitHub (ou d'une page de demo)
+   ========================================================================== */
+const PROJETS = [
+  {
+    titre: "Détection de l'état des fenêtres, des protections solaire sur des images de façades pour audit énergetique du bâtiment",
+    categorie: "Vision",
+    description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, détection des vitres visibles et déduction géométrique du taux de fermeture des protections solaires.
+        (Pour des raison de confidentialité de l'entreprise, les résultats ni le code ne sont fournis ici)",
+    techs: ["PyTorch", "Faster R-CNN", "OpenCV", "COCO","Robotflow","Docker"],
+  },
+  {
+    titre: "Assistant documentaire RAG",
+    categorie: "IA Générative",
+    description: "Système de question-réponse sur corpus documentaire : découpage sémantique, embeddings, recherche vectorielle et génération augmentée.",
+    techs: ["ChromaDB", "B25M", "LLM"],
+    lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
+  },
+  {
+    titre: "Classification de sentiments",
+    categorie: "NLP",
+    description: "Analyse de sentiments sur avis clients : prétraitement du texte, comparaison de modèles classiques et transformers fine-tunés.",
+    techs: ["Transformers", "scikit-learn"],
+    lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
+  },
+  {
+    titre: "Analyse exploratoire & modélisation",
+    categorie: "Data Science",
+    description: "Étude de bout en bout d'un jeu de données réel : nettoyage, visualisation, feature engineering et modèles prédictifs évalués rigoureusement.",
+    techs: ["pandas", "matplotlib", "XGBoost"],
+    lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
+  }
+  /* , { titre: "...", categorie: "...", description: "...", techs: ["..."], lien: "https://..." } */
+];
+
+/* ========================================================================== */
+const grille = document.getElementById("grille");
+const nav = document.getElementById("filtres");
+const compteur = document.getElementById("compteur");
+let filtreActif = "Tous";
+
+function categories(){
+  return ["Tous", ...new Set(PROJETS.map(p => p.categorie))];
+}
+
+function rendreFiltres(){
+  const boutons = categories().map(cat => {
+    const b = document.createElement("button");
+    b.className = "filtre";
+    b.textContent = cat;
+    b.setAttribute("aria-pressed", cat === filtreActif ? "true" : "false");
+    b.addEventListener("click", () => { filtreActif = cat; rendreFiltres(); rendreGrille(); });
+    return b;
+  });
+  nav.querySelectorAll(".filtre").forEach(b => b.remove());
+  boutons.reverse().forEach(b => nav.prepend(b));
+}
+
+function rendreGrille(){
+  const visibles = filtreActif === "Tous"
+    ? PROJETS
+    : PROJETS.filter(p => p.categorie === filtreActif);
+
+  compteur.textContent = visibles.length + " projet" + (visibles.length > 1 ? "s" : "");
+
+  grille.innerHTML = "";
+  if(visibles.length === 0){
+    grille.innerHTML = '<div class="vide">Aucun projet dans cette catégorie pour le moment.</div>';
+    return;
+  }
+
+  for(const p of visibles){
+    const carte = document.createElement("a");
+    carte.className = "carte";
+    carte.href = p.lien;
+    carte.target = "_blank";
+    carte.rel = "noopener";
+    carte.innerHTML =
+      '<span class="coin-b"></span>' +
+      '<span class="classe">' + p.categorie + '</span>' +
+      "<h2>" + p.titre + "</h2>" +
+      "<p>" + p.description + "</p>" +
+      '<div class="techs">' + p.techs.map(t => "<span>" + t + "</span>").join("") + "</div>" +
+      '<div class="action">Consulter le projet</div>';
+    grille.appendChild(carte);
+  }
+}
+
+rendreFiltres();
+rendreGrille();
+</script>
 </body>
 </html>
