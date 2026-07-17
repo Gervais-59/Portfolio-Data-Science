@@ -24,7 +24,6 @@ body{
   background:var(--papier);
   color:var(--encre);
   line-height:1.55;
-  /* fond quadrille discret, comme un canevas d'annotation */
   background-image:
     linear-gradient(var(--grille) 1px, transparent 1px),
     linear-gradient(90deg, var(--grille) 1px, transparent 1px);
@@ -35,7 +34,7 @@ a{color:inherit}
 
 /* ---------- EN-TETE ---------- */
 header{
-  max-width:1060px;margin:0 auto;padding:64px 24px 40px;
+  max-width:1060px;margin:0 auto;padding:64px 24px 32px;
 }
 .etiquette{
   font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
@@ -45,10 +44,7 @@ h1{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
   font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:10px 0 14px;
 }
-h1 .surlignage{
-  position:relative;white-space:nowrap;
-}
-/* le nom est encadre comme une detection, avec son "score" */
+h1 .surlignage{position:relative;white-space:nowrap}
 h1 .surlignage::before{
   content:"";position:absolute;inset:-4px -10px;
   border:2px solid var(--detect);border-radius:3px;pointer-events:none;
@@ -60,7 +56,7 @@ h1 .surlignage::after{
   background:var(--detect);color:#fff;padding:2px 7px;border-radius:2px;
   letter-spacing:.04em;
 }
-.intro{max-width:640px;color:var(--sourdine);font-size:16.5px}
+.intro{max-width:660px;color:var(--sourdine);font-size:16.5px}
 .liens-sociaux{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
 .liens-sociaux a{
   font-family:'IBM Plex Mono',monospace;font-size:13px;
@@ -68,6 +64,54 @@ h1 .surlignage::after{
   border-radius:4px;transition:background .15s,color .15s;
 }
 .liens-sociaux a:hover{background:var(--encre);color:#fff}
+
+/* ---------- SOMMAIRE (tableau d'acces rapide) ---------- */
+.sommaire-bloc{max-width:1060px;margin:0 auto;padding:8px 24px 30px}
+.sommaire-titre{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--sourdine);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.sommaire-titre::before{
+  content:"";width:10px;height:10px;border:2px solid var(--detect);
+  border-right:0;border-bottom:0;
+}
+.sommaire{
+  width:100%;border-collapse:collapse;background:var(--carte);
+  border:1.5px solid var(--grille);border-radius:6px;overflow:hidden;
+  font-size:14.5px;
+}
+.sommaire thead th{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--sourdine);
+  text-align:left;padding:11px 16px;border-bottom:1.5px solid var(--grille);
+  background:#FBFCFD;
+}
+.sommaire tbody tr{
+  border-bottom:1px solid var(--grille);cursor:pointer;
+  transition:background .13s;
+}
+.sommaire tbody tr:last-child{border-bottom:0}
+.sommaire tbody tr:hover{background:#F0FAF4}
+.sommaire td{padding:12px 16px;vertical-align:middle}
+.sommaire .idx{
+  font-family:'IBM Plex Mono',monospace;color:var(--detect-fonce);
+  font-size:13px;width:34px;
+}
+.sommaire .nom{font-weight:600;color:var(--encre)}
+.sommaire .nom a{text-decoration:none}
+.sommaire tbody tr:hover .nom a{color:var(--detect-fonce)}
+.sommaire .dom{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
+}
+.sommaire .go{
+  font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--detect);
+  text-align:right;width:40px;opacity:0;transition:opacity .13s,transform .13s;
+}
+.sommaire tbody tr:hover .go{opacity:1;transform:translateX(3px)}
+@media (max-width:620px){
+  .sommaire .dom-col{display:none}
+}
 
 /* ---------- FILTRES ---------- */
 nav{
@@ -98,7 +142,7 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
 .carte{
   position:relative;display:flex;flex-direction:column;
   background:var(--carte);border:1.5px solid var(--grille);border-radius:6px;
-  padding:22px 22px 18px;text-decoration:none;
+  padding:22px 22px 18px;text-decoration:none;scroll-margin-top:24px;
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
 .carte:hover,.carte:focus-visible{
@@ -107,7 +151,11 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
   box-shadow:0 10px 28px rgba(18,161,80,.13);
 }
 .carte:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-/* poignees d'angle facon outil d'annotation, revelees au survol */
+.carte.cible-flash{animation:flash 1.1s ease}
+@keyframes flash{
+  0%,100%{box-shadow:0 0 0 0 rgba(18,161,80,0)}
+  30%{box-shadow:0 0 0 4px rgba(18,161,80,.35)}
+}
 .carte::before,.carte::after,
 .carte .coin-b::before,.carte .coin-b::after{
   content:"";position:absolute;width:10px;height:10px;
@@ -129,12 +177,24 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
 }
 .carte h2{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
-  font-size:19px;letter-spacing:-.01em;margin-bottom:8px;
+  font-size:19px;letter-spacing:-.01em;margin-bottom:8px;line-height:1.3;
 }
 .carte p{color:var(--sourdine);font-size:14.5px;flex-grow:1}
-.carte .techs{
-  display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;
+/* metriques mises en avant (bandeau de chiffres cles) */
+.carte .metriques{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;
+  padding-top:14px;border-top:1px dashed var(--grille);
 }
+.carte .metriques div{display:flex;flex-direction:column}
+.carte .metriques .val{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
+  color:var(--detect-fonce);
+}
+.carte .metriques .lab{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--sourdine);
+  text-transform:uppercase;letter-spacing:.04em;
+}
+.carte .techs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .carte .techs span{
   font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--sourdine);
   border:1px solid var(--grille);border-radius:3px;padding:2px 7px;
@@ -145,6 +205,8 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
 }
 .carte .action::after{content:" →";transition:margin-left .15s}
 .carte:hover .action::after{margin-left:4px}
+.carte .action.prive{color:var(--sourdine)}
+.carte .action.prive::after{content:" ·"}
 
 .vide{
   grid-column:1/-1;text-align:center;padding:60px 20px;
@@ -169,21 +231,37 @@ footer{
 <body>
 
 <header>
-  <div class="etiquette">Portfolio · Data Science &amp; Vision par ordinateur</div>
+  <div class="etiquette">Portfolio · Data Science &amp; IA</div>
   <h1>Bonjour, je suis <span class="surlignage">Konan&nbsp;Gervais</span></h1>
   <p class="intro">
-    Passionné par la Data Science, la vision par ordinateur, le NLP et l'IA
-    générative (RAG). Chaque carte ci-dessous est un projet&nbsp;: filtrez par
-    domaine et cliquez pour consulter le code et les résultats.
+    Data Scientist alliant rigueur mathématique (recherche en probabilités-statistiques)
+    et maîtrise technique de l'IA : vision par ordinateur, NLP et IA générative (RAG).
+    Chaque projet ci-dessous est documenté avec son code et ses résultats.
   </p>
   <div class="liens-sociaux">
     <a href="https://www.linkedin.com/in/konan-gervais-n-guessan/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/Gervais-59" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:konangervaisn@gmail.com">Email</a>
   </div>
 </header>
 
+<!-- SOMMAIRE : acces direct a chaque projet -->
+<section class="sommaire-bloc" aria-label="Accès rapide aux projets">
+  <div class="sommaire-titre">Accès rapide</div>
+  <table class="sommaire" id="sommaire">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Projet</th>
+        <th class="dom-col">Domaine</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="sommaire-corps"><!-- genere par le script --></tbody>
+  </table>
+</section>
+
 <nav id="filtres" aria-label="Filtrer les projets par domaine">
-  <!-- boutons generes par le script -->
   <span class="compteur" id="compteur"></span>
 </nav>
 
@@ -191,56 +269,111 @@ footer{
   <div class="grille" id="grille"><!-- cartes generees par le script --></div>
 </main>
 
-<footer>Konan Gervais · construit à la main, sans framework.</footer>
+<footer>Konan Gervais N'Guessan · construit à la main, sans framework.</footer>
 
 <script>
 /* ==========================================================================
-   LES PROJETS : c'est LE SEUL endroit à modifier.
-   Ajoute/supprime des objets dans ce tableau ; les cartes et les filtres
-   se mettent a jour automatiquement.
-   - categorie : sert aussi de filtre (les boutons sont generes depuis ici)
-   - lien      : URL du repo GitHub (ou d'une page de demo)
+   LES PROJETS : le seul endroit à modifier.
+   - id        : ancre unique (sert au sommaire cliquable). Sans espace.
+   - categorie : sert de filtre (les boutons se génèrent d'ici).
+   - metriques : chiffres-clés affichés en avant (optionnel).
+   - lien      : URL du repo GitHub. Omettre pour un projet confidentiel.
    ========================================================================== */
 const PROJETS = [
   {
-    titre: "Détection de l'état des fenêtres, des protections solaire sur des images de façades pour audit énergetique du bâtiment",
-    categorie: "Vision",
-    description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, détection des vitres visibles et déduction géométrique du taux de fermeture des protections solaires.
-        (Pour des raison de confidentialité de l'entreprise, les résultats ni le code ne sont fournis ici)",
-    techs: ["PyTorch", "Faster R-CNN", "OpenCV", "COCO","Robotflow","Docker"],
-  },
-  {
-    titre: "Assistant documentaire RAG",
+    id: "rag",
+    titre: "Assistant juridique RAG — Droit du travail ivoirien",
     categorie: "IA Générative",
-    description: "Système de question-réponse sur corpus documentaire : découpage sémantique, embeddings, recherche vectorielle et génération augmentée.",
-    techs: ["ChromaDB", "B25M", "LLM"],
-    lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
+    description: "Système de question-réponse sur 516 pages de textes juridiques : chunking structurel par article, recherche hybride (embeddings + BM25), génération sourcée avec citations vérifiables et abstention hors-corpus.",
+    metriques: [
+      {val:"100%", lab:"Recall@8"},
+      {val:"5/5", lab:"Abstention"},
+      {val:"0", lab:"Hallucination"},
+    ],
+    techs: ["ChromaDB", "BM25", "sentence-transformers", "Llama 70B", "Streamlit"],
+    lien: "https://github.com/Gervais-59/RAG_Jurisprudence"
   },
   {
+    id: "vision-facades",
+    titre: "Détection d'objets sur images de façades des bâtiments pour audit énergétique",
+    categorie: "Vision",
+    description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, détection des vitres visibles et déduction géométrique du taux de fermeture des protections solaires. Code et résultats confidentiels (projet en entreprise).",
+    techs: ["PyTorch", "Faster R-CNN", "OpenCV", "COCO", "Roboflow", "Docker"],
+  },
+  {
+    id: "apple-tft",
+    titre: "Prédiction du cours de l'action Apple (TFT)",
+    categorie: "Séries temporelles",
+    description: "Prévision financière par Temporal Fusion Transformer : fusion de données hétérogènes, sélection dynamique des variables, prévision probabiliste par quantiles et interprétabilité par mécanisme d'attention.",
+    techs: ["PyTorch", "Temporal Fusion Transformer"],
+    lien: "https://github.com/Gervais-59/Projet_Bourse_Apple/tree/main/Projet_bourse_Apple"
+  },
+  {
+    id: "acp-acm",
+    titre: "Réduction de dimension : ACP & ACM appliquées",
+    categorie: "Data Science",
+    description: "Deux études par méthodes factorielles : détection d'anomalies réseau (attaques BHP Flooding) par ACP en l'absence de données étiquetées, et prédiction de faillite d'entreprises par ACM sur critères qualitatifs d'experts.",
+    techs: ["R", "Python", "ACP", "ACM"],
+    lien: "https://github.com/Gervais-59/ACP_python"
+  },
+  {
+    id: "sentiments",
     titre: "Classification de sentiments",
     categorie: "NLP",
-    description: "Analyse de sentiments sur avis clients : prétraitement du texte, comparaison de modèles classiques et transformers fine-tunés.",
-    techs: ["Transformers", "scikit-learn"],
+    description: "Analyse de sentiments sur avis clients : prétraitement du texte, comparaison de modèles classiques (régression logistique + TF-IDF) et de transformers fine-tunés.",
+    techs: ["Transformers", "scikit-learn", "TF-IDF"],
     lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
   },
   {
+    id: "eda-modelisation",
     titre: "Analyse exploratoire & modélisation",
     categorie: "Data Science",
     description: "Étude de bout en bout d'un jeu de données réel : nettoyage, visualisation, feature engineering et modèles prédictifs évalués rigoureusement.",
     techs: ["pandas", "matplotlib", "XGBoost"],
     lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
   }
-  /* , { titre: "...", categorie: "...", description: "...", techs: ["..."], lien: "https://..." } */
 ];
 
 /* ========================================================================== */
 const grille = document.getElementById("grille");
 const nav = document.getElementById("filtres");
 const compteur = document.getElementById("compteur");
+const sommaireCorps = document.getElementById("sommaire-corps");
 let filtreActif = "Tous";
 
 function categories(){
   return ["Tous", ...new Set(PROJETS.map(p => p.categorie))];
+}
+
+/* --- Sommaire : une ligne cliquable par projet, menant à sa carte --- */
+function rendreSommaire(){
+  sommaireCorps.innerHTML = "";
+  PROJETS.forEach((p, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td class="idx">' + String(i+1).padStart(2,"0") + '</td>' +
+      '<td class="nom"><a href="#' + p.id + '">' + p.titre + '</a></td>' +
+      '<td class="dom dom-col">' + p.categorie + '</td>' +
+      '<td class="go">→</td>';
+    tr.addEventListener("click", () => allerAuProjet(p.id, p.categorie));
+    sommaireCorps.appendChild(tr);
+  });
+}
+
+/* Amène à la carte : réinitialise le filtre si besoin, scrolle, fait clignoter */
+function allerAuProjet(id, categorie){
+  if(filtreActif !== "Tous" && filtreActif !== categorie){
+    filtreActif = "Tous";
+    rendreFiltres();
+    rendreGrille();
+  }
+  const carte = document.getElementById(id);
+  if(carte){
+    carte.scrollIntoView({behavior:"smooth", block:"start"});
+    carte.classList.remove("cible-flash");
+    void carte.offsetWidth;           // relance l'animation
+    carte.classList.add("cible-flash");
+  }
 }
 
 function rendreFiltres(){
@@ -270,22 +403,39 @@ function rendreGrille(){
   }
 
   for(const p of visibles){
-    const carte = document.createElement("a");
+    const aLien = Boolean(p.lien);
+    const carte = document.createElement(aLien ? "a" : "div");
     carte.className = "carte";
-    carte.href = p.lien;
-    carte.target = "_blank";
-    carte.rel = "noopener";
+    carte.id = p.id;
+    if(aLien){
+      carte.href = p.lien;
+      carte.target = "_blank";
+      carte.rel = "noopener";
+    }
+
+    const metriquesHTML = p.metriques
+      ? '<div class="metriques">' + p.metriques.map(m =>
+          '<div><span class="val">' + m.val + '</span><span class="lab">' + m.lab + '</span></div>'
+        ).join("") + '</div>'
+      : "";
+
+    const actionHTML = aLien
+      ? '<div class="action">Consulter le projet</div>'
+      : '<div class="action prive">Projet confidentiel (entreprise)</div>';
+
     carte.innerHTML =
       '<span class="coin-b"></span>' +
       '<span class="classe">' + p.categorie + '</span>' +
       "<h2>" + p.titre + "</h2>" +
       "<p>" + p.description + "</p>" +
+      metriquesHTML +
       '<div class="techs">' + p.techs.map(t => "<span>" + t + "</span>").join("") + "</div>" +
-      '<div class="action">Consulter le projet</div>';
+      actionHTML;
     grille.appendChild(carte);
   }
 }
 
+rendreSommaire();
 rendreFiltres();
 rendreGrille();
 </script>
