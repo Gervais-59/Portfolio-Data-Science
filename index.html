@@ -315,7 +315,7 @@ const PROJETS = [
       {val:"100%", lab:"Rappel r\u00e9elles"},
     ],
     image: {
-      src: "grad1.png",
+      src: "image_de_test/grad1.png",
       legende: "Grad-CAM : le mod\u00e8le active le visage et le tissu, ignore les moutons roses \u2014 et conclut \u00ab authentique \u00bb \u00e0 99,9 %.",
       legendeLongue: "Diagnostic par Grad-CAM sur un cas d'\u00e9chec. Les zones chaudes se concentrent sur les textures fines (visage, motif de la robe, laine) tandis que les moutons roses \u2014 l'incoh\u00e9rence la plus \u00e9vidente de la sc\u00e8ne \u2014 restent en zone froide. Le mod\u00e8le juge la qualit\u00e9 photographique, non la plausibilit\u00e9 du contenu : c'est ce qui explique son effondrement face aux g\u00e9n\u00e9rateurs r\u00e9cents, dont les textures sont irr\u00e9prochables."
     },
@@ -324,7 +324,7 @@ const PROJETS = [
   },
   {
     id: "vision-facades",
-    titre: "D\u00e9tection de l'\u00e9tat des fa\u00e7ades pour audit \u00e9nerg\u00e9tique",
+    titre: "D\u00e9tection d'objets sur des images de fa\u00e7ades de bâtiments pour audit \u00e9nerg\u00e9tique",
     categorie: "Vision",
     description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, d\u00e9tection des vitres visibles et d\u00e9duction g\u00e9om\u00e9trique du taux de fermeture des protections solaires. Code et r\u00e9sultats confidentiels (projet en entreprise).",
     techs: ["PyTorch", "Faster R-CNN", "OpenCV", "COCO", "Roboflow", "Docker"],
