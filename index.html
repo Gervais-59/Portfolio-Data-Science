@@ -8,13 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --encre:#141A22;        /* texte principal, bleu-noir profond */
-  --papier:#F7F9FB;       /* fond, blanc technique froid */
+  --encre:#141A22;
+  --papier:#F7F9FB;
   --carte:#FFFFFF;
-  --detect:#12A150;       /* vert "bounding box" des outils d'annotation */
+  --detect:#12A150;
   --detect-fonce:#0C7A3C;
-  --grille:#DCE3EA;       /* traits fins, bordures */
-  --sourdine:#5A6672;     /* texte secondaire */
+  --grille:#DCE3EA;
+  --sourdine:#5A6672;
   --focus:#1463FF;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -33,9 +33,7 @@ body{
 a{color:inherit}
 
 /* ---------- EN-TETE ---------- */
-header{
-  max-width:1060px;margin:0 auto;padding:64px 24px 32px;
-}
+header{max-width:1060px;margin:0 auto;padding:64px 24px 32px}
 .etiquette{
   font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
   color:var(--detect-fonce);text-transform:uppercase;
@@ -65,7 +63,7 @@ h1 .surlignage::after{
 }
 .liens-sociaux a:hover{background:var(--encre);color:#fff}
 
-/* ---------- SOMMAIRE (tableau d'acces rapide) ---------- */
+/* ---------- SOMMAIRE ---------- */
 .sommaire-bloc{max-width:1060px;margin:0 auto;padding:8px 24px 30px}
 .sommaire-titre{
   font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;
@@ -78,50 +76,35 @@ h1 .surlignage::after{
 }
 .sommaire{
   width:100%;border-collapse:collapse;background:var(--carte);
-  border:1.5px solid var(--grille);border-radius:6px;overflow:hidden;
-  font-size:14.5px;
+  border:1.5px solid var(--grille);border-radius:6px;overflow:hidden;font-size:14.5px;
 }
 .sommaire thead th{
   font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
   letter-spacing:.05em;text-transform:uppercase;color:var(--sourdine);
-  text-align:left;padding:11px 16px;border-bottom:1.5px solid var(--grille);
-  background:#FBFCFD;
+  text-align:left;padding:11px 16px;border-bottom:1.5px solid var(--grille);background:#FBFCFD;
 }
-.sommaire tbody tr{
-  border-bottom:1px solid var(--grille);cursor:pointer;
-  transition:background .13s;
-}
+.sommaire tbody tr{border-bottom:1px solid var(--grille);cursor:pointer;transition:background .13s}
 .sommaire tbody tr:last-child{border-bottom:0}
 .sommaire tbody tr:hover{background:#F0FAF4}
 .sommaire td{padding:12px 16px;vertical-align:middle}
-.sommaire .idx{
-  font-family:'IBM Plex Mono',monospace;color:var(--detect-fonce);
-  font-size:13px;width:34px;
-}
+.sommaire .idx{font-family:'IBM Plex Mono',monospace;color:var(--detect-fonce);font-size:13px;width:34px}
 .sommaire .nom{font-weight:600;color:var(--encre)}
 .sommaire .nom a{text-decoration:none}
 .sommaire tbody tr:hover .nom a{color:var(--detect-fonce)}
-.sommaire .dom{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
-}
+.sommaire .dom{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine)}
 .sommaire .go{
   font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--detect);
   text-align:right;width:40px;opacity:0;transition:opacity .13s,transform .13s;
 }
 .sommaire tbody tr:hover .go{opacity:1;transform:translateX(3px)}
-@media (max-width:620px){
-  .sommaire .dom-col{display:none}
-}
+@media (max-width:620px){.sommaire .dom-col{display:none}}
 
 /* ---------- FILTRES ---------- */
 nav{
   max-width:1060px;margin:0 auto;padding:0 24px 26px;
   display:flex;gap:10px;flex-wrap:wrap;align-items:center;
 }
-nav .compteur{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
-  margin-left:auto;
-}
+nav .compteur{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);margin-left:auto}
 .filtre{
   font-family:'IBM Plex Mono',monospace;font-size:13px;cursor:pointer;
   padding:7px 14px;border:1.5px solid var(--grille);border-radius:999px;
@@ -129,16 +112,11 @@ nav .compteur{
   transition:border-color .15s,color .15s,background .15s;
 }
 .filtre:hover{border-color:var(--encre);color:var(--encre)}
-.filtre[aria-pressed="true"]{
-  background:var(--encre);border-color:var(--encre);color:#fff;
-}
+.filtre[aria-pressed="true"]{background:var(--encre);border-color:var(--encre);color:#fff}
 
-/* ---------- GRILLE DE PROJETS ---------- */
+/* ---------- GRILLE ---------- */
 main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
-.grille{
-  display:grid;gap:20px;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-}
+.grille{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 .carte{
   position:relative;display:flex;flex-direction:column;
   background:var(--carte);border:1.5px solid var(--grille);border-radius:6px;
@@ -146,8 +124,7 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
 .carte:hover,.carte:focus-visible{
-  transform:translateY(-3px);
-  border-color:var(--detect);
+  transform:translateY(-3px);border-color:var(--detect);
   box-shadow:0 10px 28px rgba(18,161,80,.13);
 }
 .carte:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
@@ -172,23 +149,20 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
   align-self:flex-start;
   font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
   letter-spacing:.05em;text-transform:uppercase;
-  background:var(--detect);color:#fff;padding:3px 8px;border-radius:2px;
-  margin-bottom:14px;
+  background:var(--detect);color:#fff;padding:3px 8px;border-radius:2px;margin-bottom:14px;
 }
 .carte h2{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
   font-size:19px;letter-spacing:-.01em;margin-bottom:8px;line-height:1.3;
 }
 .carte p{color:var(--sourdine);font-size:14.5px;flex-grow:1}
-/* metriques mises en avant (bandeau de chiffres cles) */
 .carte .metriques{
   display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;
   padding-top:14px;border-top:1px dashed var(--grille);
 }
 .carte .metriques div{display:flex;flex-direction:column}
 .carte .metriques .val{
-  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
-  color:var(--detect-fonce);
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--detect-fonce);
 }
 .carte .metriques .lab{
   font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--sourdine);
@@ -203,21 +177,55 @@ main{max-width:1060px;margin:0 auto;padding:0 24px 90px}
   margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;
   font-weight:500;color:var(--detect-fonce);
 }
-.carte .action::after{content:" →";transition:margin-left .15s}
+.carte .action::after{content:" \2192";transition:margin-left .15s}
 .carte:hover .action::after{margin-left:4px}
 .carte .action.prive{color:var(--sourdine)}
-.carte .action.prive::after{content:" ·"}
+.carte .action.prive::after{content:" \00b7"}
 
-.vide{
-  grid-column:1/-1;text-align:center;padding:60px 20px;
-  color:var(--sourdine);font-size:15px;
+/* ---------- ILLUSTRATION ---------- */
+.carte .illustration{
+  margin:14px 0 0;border:1px solid var(--grille);border-radius:5px;
+  overflow:hidden;background:#FBFCFD;cursor:zoom-in;position:relative;
 }
+.carte .illustration img{display:block;width:100%;height:auto}
+.carte .illustration figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--sourdine);
+  padding:6px 9px;border-top:1px solid var(--grille);line-height:1.45;
+}
+.carte .illustration::after{
+  content:"agrandir";position:absolute;top:7px;right:7px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  background:rgba(20,26,34,.82);color:#fff;padding:2px 7px;border-radius:3px;
+  opacity:0;transition:opacity .15s;
+}
+.carte .illustration:hover::after{opacity:1}
 
+/* ---------- VISIONNEUSE ---------- */
+#visionneuse{
+  position:fixed;inset:0;background:rgba(20,26,34,.93);z-index:1000;
+  display:none;align-items:center;justify-content:center;padding:32px;
+}
+#visionneuse.ouverte{display:flex}
+#visionneuse figure{max-width:1200px;width:100%}
+#visionneuse img{
+  display:block;max-width:100%;max-height:78vh;margin:0 auto;
+  border-radius:6px;background:#fff;
+}
+#visionneuse figcaption{
+  color:#E6EBF0;font-size:14px;line-height:1.6;margin-top:16px;text-align:center;
+  max-width:760px;margin-left:auto;margin-right:auto;
+}
+#visionneuse .fermer{
+  position:absolute;top:18px;right:22px;background:none;border:0;
+  color:#fff;font-size:30px;cursor:pointer;line-height:1;padding:6px 12px;
+}
+#visionneuse .fermer:hover{color:var(--detect)}
+
+.vide{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--sourdine);font-size:15px}
 footer{
   max-width:1060px;margin:0 auto;padding:0 24px 48px;
   font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--sourdine);
 }
-
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}
@@ -231,12 +239,12 @@ footer{
 <body>
 
 <header>
-  <div class="etiquette">Portfolio · Data Science &amp; IA</div>
+  <div class="etiquette">Portfolio &middot; Data Science &amp; IA</div>
   <h1>Bonjour, je suis <span class="surlignage">Konan&nbsp;Gervais</span></h1>
   <p class="intro">
-    Data Scientist alliant rigueur mathématique (recherche en probabilités-statistiques)
-    et maîtrise technique de l'IA : vision par ordinateur, NLP et IA générative (RAG).
-    Chaque projet ci-dessous est documenté avec son code et ses résultats.
+    Data Scientist alliant rigueur mathematique (recherche en probabilites-statistiques)
+    et maitrise technique de l'IA : vision par ordinateur, NLP et IA generative (RAG).
+    Chaque projet ci-dessous est documente avec son code et ses resultats mesures.
   </p>
   <div class="liens-sociaux">
     <a href="https://www.linkedin.com/in/konan-gervais-n-guessan/" target="_blank" rel="noopener">LinkedIn</a>
@@ -245,19 +253,13 @@ footer{
   </div>
 </header>
 
-<!-- SOMMAIRE : acces direct a chaque projet -->
-<section class="sommaire-bloc" aria-label="Accès rapide aux projets">
-  <div class="sommaire-titre">Accès rapide</div>
+<section class="sommaire-bloc" aria-label="Acces rapide aux projets">
+  <div class="sommaire-titre">Acces rapide</div>
   <table class="sommaire" id="sommaire">
     <thead>
-      <tr>
-        <th>#</th>
-        <th>Projet</th>
-        <th class="dom-col">Domaine</th>
-        <th></th>
-      </tr>
+      <tr><th>#</th><th>Projet</th><th class="dom-col">Domaine</th><th></th></tr>
     </thead>
-    <tbody id="sommaire-corps"><!-- genere par le script --></tbody>
+    <tbody id="sommaire-corps"></tbody>
   </table>
 </section>
 
@@ -266,25 +268,34 @@ footer{
 </nav>
 
 <main>
-  <div class="grille" id="grille"><!-- cartes generees par le script --></div>
+  <div class="grille" id="grille"></div>
 </main>
 
-<footer>Konan Gervais N'Guessan · construit à la main, sans framework.</footer>
+<div id="visionneuse" role="dialog" aria-modal="true" aria-label="Illustration agrandie">
+  <button class="fermer" aria-label="Fermer">&times;</button>
+  <figure>
+    <img id="visionneuse-img" alt="">
+    <figcaption id="visionneuse-legende"></figcaption>
+  </figure>
+</div>
+
+<footer>Konan Gervais N'Guessan &middot; construit a la main, sans framework.</footer>
 
 <script>
 /* ==========================================================================
-   LES PROJETS : le seul endroit à modifier.
-   - id        : ancre unique (sert au sommaire cliquable). Sans espace.
-   - categorie : sert de filtre (les boutons se génèrent d'ici).
-   - metriques : chiffres-clés affichés en avant (optionnel).
-   - lien      : URL du repo GitHub. Omettre pour un projet confidentiel.
+   LES PROJETS : le seul endroit a modifier.
+   - id        : ancre unique (sommaire cliquable). Sans espace ni accent.
+   - categorie : sert de filtre (les boutons se generent d'ici).
+   - metriques : chiffres-cles mis en avant (optionnel).
+   - image     : { src, legende, legendeLongue } illustration (optionnel).
+   - lien      : URL du depot. Omettre pour un projet confidentiel.
    ========================================================================== */
 const PROJETS = [
   {
     id: "rag",
-    titre: "Assistant juridique RAG — Droit du travail ivoirien",
-    categorie: "IA Générative",
-    description: "Système de question-réponse sur 516 pages de textes juridiques : chunking structurel par article, recherche hybride (embeddings + BM25), génération sourcée avec citations vérifiables et abstention hors-corpus.",
+    titre: "Assistant juridique RAG \u2014 Droit du travail ivoirien",
+    categorie: "IA G\u00e9n\u00e9rative",
+    description: "Syst\u00e8me de question-r\u00e9ponse sur 516 pages de textes juridiques : chunking structurel par article, recherche hybride (embeddings + BM25), g\u00e9n\u00e9ration sourc\u00e9e avec citations v\u00e9rifiables et abstention hors-corpus.",
     metriques: [
       {val:"100%", lab:"Recall@8"},
       {val:"5/5", lab:"Abstention"},
@@ -294,25 +305,43 @@ const PROJETS = [
     lien: "https://github.com/Gervais-59/RAG_Jurisprudence"
   },
   {
-    id: "vision-facades",
-    titre: "Détection d'objets sur images de façades des bâtiments pour audit énergétique",
+    id: "detection-ia",
+    titre: "D\u00e9tecteur d'images g\u00e9n\u00e9r\u00e9es par IA",
     categorie: "Vision",
-    description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, détection des vitres visibles et déduction géométrique du taux de fermeture des protections solaires. Code et résultats confidentiels (projet en entreprise).",
+    description: "Vision Transformer affin\u00e9 pour distinguer photographies r\u00e9elles et images g\u00e9n\u00e9r\u00e9es. Au-del\u00e0 du classifieur : mesure de la g\u00e9n\u00e9ralisation hors distribution, diagnostic des \u00e9checs par Grad-CAM et calibration du seuil guid\u00e9e par l'analyse d'erreurs.",
+    metriques: [
+      {val:"99,2%", lab:"Test interne"},
+      {val:"79%", lab:"Rappel IA externe"},
+      {val:"100%", lab:"Rappel r\u00e9elles"},
+    ],
+    image: {
+      src: "grad1.png",
+      legende: "Grad-CAM : le mod\u00e8le active le visage et le tissu, ignore les moutons roses \u2014 et conclut \u00ab authentique \u00bb \u00e0 99,9 %.",
+      legendeLongue: "Diagnostic par Grad-CAM sur un cas d'\u00e9chec. Les zones chaudes se concentrent sur les textures fines (visage, motif de la robe, laine) tandis que les moutons roses \u2014 l'incoh\u00e9rence la plus \u00e9vidente de la sc\u00e8ne \u2014 restent en zone froide. Le mod\u00e8le juge la qualit\u00e9 photographique, non la plausibilit\u00e9 du contenu : c'est ce qui explique son effondrement face aux g\u00e9n\u00e9rateurs r\u00e9cents, dont les textures sont irr\u00e9prochables."
+    },
+    techs: ["PyTorch", "ViT", "Transformers", "Grad-CAM", "FastAPI", "Docker"],
+    lien: "https://github.com/Gervais-59/Projet_detection_fake_images"
+  },
+  {
+    id: "vision-facades",
+    titre: "D\u00e9tection de l'\u00e9tat des fa\u00e7ades pour audit \u00e9nerg\u00e9tique",
+    categorie: "Vision",
+    description: "Pipeline complet Faster R-CNN + ConvNeXtV2 : redressement de perspective, extraction de ROIs, d\u00e9tection des vitres visibles et d\u00e9duction g\u00e9om\u00e9trique du taux de fermeture des protections solaires. Code et r\u00e9sultats confidentiels (projet en entreprise).",
     techs: ["PyTorch", "Faster R-CNN", "OpenCV", "COCO", "Roboflow", "Docker"],
   },
   {
     id: "apple-tft",
-    titre: "Prédiction du cours de l'action Apple (TFT)",
-    categorie: "Séries temporelles",
-    description: "Prévision financière par Temporal Fusion Transformer : fusion de données hétérogènes, sélection dynamique des variables, prévision probabiliste par quantiles et interprétabilité par mécanisme d'attention.",
+    titre: "Pr\u00e9diction du cours de l'action Apple (TFT)",
+    categorie: "S\u00e9ries temporelles",
+    description: "Pr\u00e9vision financi\u00e8re par Temporal Fusion Transformer : fusion de donn\u00e9es h\u00e9t\u00e9rog\u00e8nes, s\u00e9lection dynamique des variables, pr\u00e9vision probabiliste par quantiles et interpr\u00e9tabilit\u00e9 par m\u00e9canisme d'attention.",
     techs: ["PyTorch", "Temporal Fusion Transformer"],
     lien: "https://github.com/Gervais-59/Projet_Bourse_Apple/tree/main/Projet_bourse_Apple"
   },
   {
     id: "acp-acm",
-    titre: "Réduction de dimension : ACP & ACM appliquées",
+    titre: "R\u00e9duction de dimension : ACP &amp; ACM appliqu\u00e9es",
     categorie: "Data Science",
-    description: "Deux études par méthodes factorielles : détection d'anomalies réseau (attaques BHP Flooding) par ACP en l'absence de données étiquetées, et prédiction de faillite d'entreprises par ACM sur critères qualitatifs d'experts.",
+    description: "Deux \u00e9tudes par m\u00e9thodes factorielles : d\u00e9tection d'anomalies r\u00e9seau (attaques BHP Flooding) par ACP en l'absence de donn\u00e9es \u00e9tiquet\u00e9es, et pr\u00e9diction de faillite d'entreprises par ACM sur crit\u00e8res qualitatifs d'experts.",
     techs: ["R", "Python", "ACP", "ACM"],
     lien: "https://github.com/Gervais-59/ACP_python"
   },
@@ -320,18 +349,10 @@ const PROJETS = [
     id: "sentiments",
     titre: "Classification de sentiments",
     categorie: "NLP",
-    description: "Analyse de sentiments sur avis clients : prétraitement du texte, comparaison de modèles classiques (régression logistique + TF-IDF) et de transformers fine-tunés.",
+    description: "Analyse de sentiments sur avis clients : pr\u00e9traitement du texte, comparaison de mod\u00e8les classiques (r\u00e9gression logistique + TF-IDF) et de transformers fine-tun\u00e9s.",
     techs: ["Transformers", "scikit-learn", "TF-IDF"],
     lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
   },
-  {
-    id: "eda-modelisation",
-    titre: "Analyse exploratoire & modélisation",
-    categorie: "Data Science",
-    description: "Étude de bout en bout d'un jeu de données réel : nettoyage, visualisation, feature engineering et modèles prédictifs évalués rigoureusement.",
-    techs: ["pandas", "matplotlib", "XGBoost"],
-    lien: "https://github.com/Gervais-59/Portfolio-Data-Science"
-  }
 ];
 
 /* ========================================================================== */
@@ -339,13 +360,35 @@ const grille = document.getElementById("grille");
 const nav = document.getElementById("filtres");
 const compteur = document.getElementById("compteur");
 const sommaireCorps = document.getElementById("sommaire-corps");
+const visionneuse = document.getElementById("visionneuse");
+const visionneuseImg = document.getElementById("visionneuse-img");
+const visionneuseLegende = document.getElementById("visionneuse-legende");
 let filtreActif = "Tous";
 
 function categories(){
   return ["Tous", ...new Set(PROJETS.map(p => p.categorie))];
 }
 
-/* --- Sommaire : une ligne cliquable par projet, menant à sa carte --- */
+/* --- Visionneuse plein ecran --- */
+function ouvrirVisionneuse(src, legende){
+  visionneuseImg.src = src;
+  visionneuseImg.alt = legende;
+  visionneuseLegende.textContent = legende;
+  visionneuse.classList.add("ouverte");
+  document.body.style.overflow = "hidden";
+}
+function fermerVisionneuse(){
+  visionneuse.classList.remove("ouverte");
+  document.body.style.overflow = "";
+}
+visionneuse.addEventListener("click", e => {
+  if(e.target === visionneuse || e.target.classList.contains("fermer")) fermerVisionneuse();
+});
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape" && visionneuse.classList.contains("ouverte")) fermerVisionneuse();
+});
+
+/* --- Sommaire --- */
 function rendreSommaire(){
   sommaireCorps.innerHTML = "";
   PROJETS.forEach((p, i) => {
@@ -354,13 +397,12 @@ function rendreSommaire(){
       '<td class="idx">' + String(i+1).padStart(2,"0") + '</td>' +
       '<td class="nom"><a href="#' + p.id + '">' + p.titre + '</a></td>' +
       '<td class="dom dom-col">' + p.categorie + '</td>' +
-      '<td class="go">→</td>';
+      '<td class="go">&rarr;</td>';
     tr.addEventListener("click", () => allerAuProjet(p.id, p.categorie));
     sommaireCorps.appendChild(tr);
   });
 }
 
-/* Amène à la carte : réinitialise le filtre si besoin, scrolle, fait clignoter */
 function allerAuProjet(id, categorie){
   if(filtreActif !== "Tous" && filtreActif !== categorie){
     filtreActif = "Tous";
@@ -371,7 +413,7 @@ function allerAuProjet(id, categorie){
   if(carte){
     carte.scrollIntoView({behavior:"smooth", block:"start"});
     carte.classList.remove("cible-flash");
-    void carte.offsetWidth;           // relance l'animation
+    void carte.offsetWidth;
     carte.classList.add("cible-flash");
   }
 }
@@ -395,10 +437,10 @@ function rendreGrille(){
     : PROJETS.filter(p => p.categorie === filtreActif);
 
   compteur.textContent = visibles.length + " projet" + (visibles.length > 1 ? "s" : "");
-
   grille.innerHTML = "";
+
   if(visibles.length === 0){
-    grille.innerHTML = '<div class="vide">Aucun projet dans cette catégorie pour le moment.</div>';
+    grille.innerHTML = '<div class="vide">Aucun projet dans cette categorie pour le moment.</div>';
     return;
   }
 
@@ -419,6 +461,13 @@ function rendreGrille(){
         ).join("") + '</div>'
       : "";
 
+    const imageHTML = p.image
+      ? '<figure class="illustration" data-src="' + p.image.src + '">' +
+          '<img src="' + p.image.src + '" alt="' + p.image.legende + '" loading="lazy">' +
+          '<figcaption>' + p.image.legende + '</figcaption>' +
+        '</figure>'
+      : "";
+
     const actionHTML = aLien
       ? '<div class="action">Consulter le projet</div>'
       : '<div class="action prive">Projet confidentiel (entreprise)</div>';
@@ -429,8 +478,20 @@ function rendreGrille(){
       "<h2>" + p.titre + "</h2>" +
       "<p>" + p.description + "</p>" +
       metriquesHTML +
+      imageHTML +
       '<div class="techs">' + p.techs.map(t => "<span>" + t + "</span>").join("") + "</div>" +
       actionHTML;
+
+    // Clic sur l'illustration : ouvre la visionneuse sans suivre le lien du projet
+    const fig = carte.querySelector(".illustration");
+    if(fig){
+      fig.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();
+        ouvrirVisionneuse(p.image.src, p.image.legendeLongue || p.image.legende);
+      });
+    }
+
     grille.appendChild(carte);
   }
 }
